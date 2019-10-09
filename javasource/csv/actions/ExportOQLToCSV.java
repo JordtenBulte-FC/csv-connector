@@ -40,14 +40,18 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 	private IMendixObject returnEntity;
 	private java.lang.Boolean removeNewLinesFromValues;
 	private java.lang.Boolean zipResult;
+	private java.lang.String separator;
+	private java.lang.String quoteCharacter;
 
-	public ExportOQLToCSV(IContext context, java.lang.String statement, IMendixObject returnEntity, java.lang.Boolean removeNewLinesFromValues, java.lang.Boolean zipResult)
+	public ExportOQLToCSV(IContext context, java.lang.String statement, IMendixObject returnEntity, java.lang.Boolean removeNewLinesFromValues, java.lang.Boolean zipResult, java.lang.String separator, java.lang.String quoteCharacter)
 	{
 		super(context);
 		this.statement = statement;
 		this.returnEntity = returnEntity;
 		this.removeNewLinesFromValues = removeNewLinesFromValues;
 		this.zipResult = zipResult;
+		this.separator = separator;
+		this.quoteCharacter = quoteCharacter;
 	}
 
 	@Override
@@ -73,7 +77,10 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 			os = fos;
 		}
 		
-		CSVWriter writer = new CSVWriter(new OutputStreamWriter(os));
+		CSVWriter writer = new CSVWriter(new OutputStreamWriter(os),
+				separator == null ? ',' : separator.charAt(0),
+				quoteCharacter == null ? '\"' : quoteCharacter.charAt(0),
+				'\\', System.lineSeparator());
 		IMendixObject result = Core.instantiate(getContext(), this.returnEntity.getType());
 		
 		logger.debug("Executing query");

@@ -15,6 +15,7 @@ public class UserActionsRegistrar
     registrator.registerUserAction(csv.actions.CountLines.class);
     registrator.registerUserAction(csv.actions.ExportCSV.class);
     registrator.registerUserAction(csv.actions.ExportOQLToCSV.class);
+    registrator.registerUserAction(csv.actions.ExportSQLToCSV.class);
     registrator.registerUserAction(csv.actions.ImportCSV.class);
     registrator.registerUserAction(csv.actions.ReadNextLine.class);
     registrator.registerUserAction(csv.actions.WriteNextLine.class);
