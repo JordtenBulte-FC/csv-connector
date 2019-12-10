@@ -49,7 +49,7 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 		this.zipResult = zipResult;
 	}
 
-	@Override
+	@java.lang.Override
 	public IMendixObject executeAction() throws Exception
 	{
 		// BEGIN USER CODE
@@ -122,7 +122,7 @@ final int PAGE_SIZE = 10000;
 	/**
 	 * Returns a string representation of this action
 	 */
-	@Override
+	@java.lang.Override
 	public java.lang.String toString()
 	{
 		return "ExportOQLToCSV";

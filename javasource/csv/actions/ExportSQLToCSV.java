@@ -36,6 +36,17 @@ import com.opencsv.CSVWriter;
 import csv.impl.CSV;
 import system.proxies.FileDocument;
 
+/**
+ * This action exports the result of a SQL query to CSV.
+ * 
+ * Upsides:
+ * - It is suitable for high volumes because it uses statement cursors to iterate over the data which increases performance and memory consumption (compared to the pagination approach of OQL).
+ * 
+ * Downsides:
+ * - No prepared statements
+ * - Database specific
+ *  
+ */
 public class ExportSQLToCSV extends CustomJavaAction<IMendixObject>
 {
 	private java.lang.String statement;
@@ -54,7 +65,7 @@ public class ExportSQLToCSV extends CustomJavaAction<IMendixObject>
 		this.quoteCharacter = quoteCharacter;
 	}
 
-	@Override
+	@java.lang.Override
 	public IMendixObject executeAction() throws Exception
 	{
 		// BEGIN USER CODE
@@ -68,7 +79,7 @@ public class ExportSQLToCSV extends CustomJavaAction<IMendixObject>
 	/**
 	 * Returns a string representation of this action
 	 */
-	@Override
+	@java.lang.Override
 	public java.lang.String toString()
 	{
 		return "ExportSQLToCSV";

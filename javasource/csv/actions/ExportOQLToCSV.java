@@ -54,7 +54,7 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 		this.quoteCharacter = quoteCharacter;
 	}
 
-	@Override
+	@java.lang.Override
 	public IMendixObject executeAction() throws Exception
 	{
 		// BEGIN USER CODE
@@ -130,7 +130,7 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 	/**
 	 * Returns a string representation of this action
 	 */
-	@Override
+	@java.lang.Override
 	public java.lang.String toString()
 	{
 		return "ExportOQLToCSV";

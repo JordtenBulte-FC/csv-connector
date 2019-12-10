@@ -37,7 +37,7 @@ public class CountLines extends CustomJavaAction<java.lang.Long>
 		this.skipLines = skipLines;
 	}
 
-	@Override
+	@java.lang.Override
 	public java.lang.Long executeAction() throws Exception
 	{
 		this.file = __file == null ? null : system.proxies.FileDocument.initialize(getContext(), __file);
@@ -67,7 +67,7 @@ public class CountLines extends CustomJavaAction<java.lang.Long>
 	/**
 	 * Returns a string representation of this action
 	 */
-	@Override
+	@java.lang.Override
 	public java.lang.String toString()
 	{
 		return "CountLines";

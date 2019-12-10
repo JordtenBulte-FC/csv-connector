@@ -49,7 +49,7 @@ public class ImportCSV extends CustomJavaAction<IMendixObject>
 		this.returnEntity = returnEntity;
 	}
 
-	@Override
+	@java.lang.Override
 	public IMendixObject executeAction() throws Exception
 	{
 		this.file = __file == null ? null : system.proxies.FileDocument.initialize(getContext(), __file);
@@ -112,7 +112,7 @@ public class ImportCSV extends CustomJavaAction<IMendixObject>
 	/**
 	 * Returns a string representation of this action
 	 */
-	@Override
+	@java.lang.Override
 	public java.lang.String toString()
 	{
 		return "ImportCSV";
