@@ -166,8 +166,9 @@ public class ExportSQLToCSV extends CustomJavaAction<IMendixObject>
 							val = Long.toString(date.getTime());
 						}
 						break;
+					case Types.NUMERIC:
 					case Types.DECIMAL:
-						Long r = rs.getLong(i);
+						BigDecimal r = rs.getBigDecimal(i);
 						if (r != null) {
 							val = r.toString();
 						}
@@ -186,10 +187,6 @@ public class ExportSQLToCSV extends CustomJavaAction<IMendixObject>
 					case Types.INTEGER:
 						int in = rs.getInt(i);
 						val = Integer.toString(in);
-						break;
-					case Types.NUMERIC:
-						long l = rs.getLong(i);
-						val = Long.toString(l);
 						break;
 					case Types.NCHAR:
 					case Types.NVARCHAR:
