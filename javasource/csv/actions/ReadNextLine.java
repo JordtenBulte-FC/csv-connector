@@ -21,6 +21,7 @@ import com.mendix.webui.CustomJavaAction;
 import com.opencsv.CSVReader;
 import csv.impl.CSV;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
+import com.mendix.systemwideinterfaces.core.meta.IMetaObject;
 import com.mendix.systemwideinterfaces.core.meta.IMetaPrimitive;
 
 /**
@@ -65,7 +66,12 @@ public class ReadNextLine extends CustomJavaAction<IMendixObject>
 		Collection<? extends IMetaPrimitive> attributes = Core.getMetaObject(this.entity).getDeclaredMetaPrimitives();
 		List<String> attributeNames = new LinkedList<String>();
 		for (IMetaPrimitive attribute : attributes) {
-			attributeNames.add(attribute.getName());
+			String name = attribute.getName();
+			if (name.equalsIgnoreCase("createdBy") || name.equalsIgnoreCase("owner") ||
+				name.equalsIgnoreCase("createdDate") || name.equalsIgnoreCase("changedDate")) {
+				continue;
+			}
+			attributeNames.add(name);
 		}
 		Collections.sort(attributeNames);
 		

@@ -14,12 +14,13 @@ import com.mendix.systemwideinterfaces.core.IContext;
 public class Microflows
 {
 	// These are the microflows for the MyFirstModule module
-	public static void microflow(IContext context)
+	public static void iVK_Import(IContext context, myfirstmodule.proxies.CSV _cSV)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
-			Core.execute(context, "MyFirstModule.Microflow", params);
+			params.put("CSV", _cSV == null ? null : _cSV.getMendixObject());
+			Core.execute(context, "MyFirstModule.IVK_Import", params);
 		}
 		catch (CoreException e)
 		{
