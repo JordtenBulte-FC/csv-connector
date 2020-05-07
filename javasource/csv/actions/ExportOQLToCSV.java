@@ -5,7 +5,7 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
-// Special characters, e.g., é, ö, à, etc. are supported in comments.
+// Special characters, e.g., Ã©, Ã¶, Ã , etc. are supported in comments.
 
 package csv.actions;
 
@@ -42,8 +42,9 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 	private java.lang.Boolean zipResult;
 	private java.lang.String separator;
 	private java.lang.String quoteCharacter;
+	private java.lang.String escapeCharacter;
 
-	public ExportOQLToCSV(IContext context, java.lang.String statement, IMendixObject returnEntity, java.lang.Boolean removeNewLinesFromValues, java.lang.Boolean zipResult, java.lang.String separator, java.lang.String quoteCharacter)
+	public ExportOQLToCSV(IContext context, java.lang.String statement, IMendixObject returnEntity, java.lang.Boolean removeNewLinesFromValues, java.lang.Boolean zipResult, java.lang.String separator, java.lang.String quoteCharacter, java.lang.String escapeCharacter)
 	{
 		super(context);
 		this.statement = statement;
@@ -52,6 +53,7 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 		this.zipResult = zipResult;
 		this.separator = separator;
 		this.quoteCharacter = quoteCharacter;
+		this.escapeCharacter = escapeCharacter;
 	}
 
 	@java.lang.Override
@@ -80,7 +82,8 @@ public class ExportOQLToCSV extends CustomJavaAction<IMendixObject>
 		CSVWriter writer = new CSVWriter(new OutputStreamWriter(os),
 				separator == null ? ',' : separator.charAt(0),
 				quoteCharacter == null ? '\"' : quoteCharacter.charAt(0),
-				'\\', System.lineSeparator());
+				escapeCharacter == null? '\\' : escapeCharacter.charAt(0), 
+				System.lineSeparator());
 		IMendixObject result = Core.instantiate(getContext(), this.returnEntity.getType());
 		
 		logger.debug("Executing query");
