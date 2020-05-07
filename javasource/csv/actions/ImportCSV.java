@@ -5,7 +5,7 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
-// Special characters, e.g., é, ö, à, etc. are supported in comments.
+// Special characters, e.g., Ã©, Ã¶, Ã , etc. are supported in comments.
 
 package csv.actions;
 
@@ -33,10 +33,11 @@ public class ImportCSV extends CustomJavaAction<IMendixObject>
 	private java.lang.Boolean useSystemContext;
 	private java.lang.String separator;
 	private java.lang.String quoteCharacter;
+	private java.lang.String escapeCharacter;
 	private java.lang.Long skipLines;
 	private java.lang.String returnEntity;
 
-	public ImportCSV(IContext context, IMendixObject file, java.lang.String microflow, IMendixObject microflowParameter, java.lang.Boolean useSystemContext, java.lang.String separator, java.lang.String quoteCharacter, java.lang.Long skipLines, java.lang.String returnEntity)
+	public ImportCSV(IContext context, IMendixObject file, java.lang.String microflow, IMendixObject microflowParameter, java.lang.Boolean useSystemContext, java.lang.String separator, java.lang.String quoteCharacter, java.lang.String escapeCharacter, java.lang.Long skipLines, java.lang.String returnEntity)
 	{
 		super(context);
 		this.__file = file;
@@ -45,6 +46,7 @@ public class ImportCSV extends CustomJavaAction<IMendixObject>
 		this.useSystemContext = useSystemContext;
 		this.separator = separator;
 		this.quoteCharacter = quoteCharacter;
+		this.escapeCharacter = escapeCharacter;
 		this.skipLines = skipLines;
 		this.returnEntity = returnEntity;
 	}
@@ -64,6 +66,10 @@ public class ImportCSV extends CustomJavaAction<IMendixObject>
 		
 		if (this.quoteCharacter != null) {
 			parserBuilder.withQuoteChar(this.quoteCharacter.charAt(0));
+		}
+		
+		if (this.escapeCharacter != null) {
+			parserBuilder.withEscapeChar(this.escapeCharacter.charAt(0));
 		}
 		
 		CSVParser parser = parserBuilder.build();
