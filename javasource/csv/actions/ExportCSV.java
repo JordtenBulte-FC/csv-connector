@@ -5,7 +5,7 @@
 // - the code between BEGIN USER CODE and END USER CODE
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
-// Special characters, e.g., é, ö, à, etc. are supported in comments.
+// Special characters, e.g., Ã©, Ã¶, Ã , etc. are supported in comments.
 
 package csv.actions;
 
@@ -32,8 +32,9 @@ public class ExportCSV extends CustomJavaAction<java.lang.Boolean>
 	private java.lang.Boolean useSystemContext;
 	private java.lang.String separator;
 	private java.lang.String quoteCharacter;
+	private java.lang.String escapeCharacter;
 
-	public ExportCSV(IContext context, IMendixObject file, java.lang.String microflow, IMendixObject microflowParameter, java.lang.Boolean useSystemContext, java.lang.String separator, java.lang.String quoteCharacter)
+	public ExportCSV(IContext context, IMendixObject file, java.lang.String microflow, IMendixObject microflowParameter, java.lang.Boolean useSystemContext, java.lang.String separator, java.lang.String quoteCharacter, java.lang.String escapeCharacter)
 	{
 		super(context);
 		this.__file = file;
@@ -42,6 +43,7 @@ public class ExportCSV extends CustomJavaAction<java.lang.Boolean>
 		this.useSystemContext = useSystemContext;
 		this.separator = separator;
 		this.quoteCharacter = quoteCharacter;
+		this.escapeCharacter = escapeCharacter;
 	}
 
 	@java.lang.Override
@@ -58,7 +60,7 @@ public class ExportCSV extends CustomJavaAction<java.lang.Boolean>
 		CSVWriter writer = new CSVWriter(new FileWriter(tmpFile), 
                 this.separator.charAt(0), 
                 this.quoteCharacter != null ? this.quoteCharacter.charAt(0) : CSVWriter.NO_QUOTE_CHARACTER, 
-                CSVWriter.NO_ESCAPE_CHARACTER, "\r\n");
+                this.escapeCharacter != null ? this.escapeCharacter.charAt(0) : CSVWriter.NO_ESCAPE_CHARACTER, "\r\n");
 		
 		logger.debug("CSV file opened..");
 		
